@@ -155,6 +155,145 @@ def cmd_pair(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_figure(args: argparse.Namespace) -> int:
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Patch, Rectangle
+
+    from .figures import BOTH, NEITHER, ONLY_A, ONLY_B, build_panels, densest_ink_window
+
+    a, b = _load(args.a), _load(args.b)
+    mask = (
+        tifffile.imread(args.mask)
+        if args.mask
+        else ((a > 0) & (b > 0)).astype(np.uint8)
+    )
+    a, b, mask = align(a, b, mask)
+    panels = build_panels(a, b, mask, threshold=args.threshold)
+    got = agreement(a, b, mask=mask, threshold=args.threshold)
+
+    zoom = args.zoom
+    zy, zx = densest_ink_window(a, b, mask, zoom, threshold=args.threshold)
+    za, zb, zmask = (
+        a[zy : zy + zoom, zx : zx + zoom],
+        b[zy : zy + zoom, zx : zx + zoom],
+        mask[zy : zy + zoom, zx : zx + zoom],
+    )
+    zpanels = build_panels(za, zb, zmask, threshold=args.threshold, target_long_edge=zoom)
+
+    label_a = args.label_a or Path(args.a).stem
+    label_b = args.label_b or Path(args.b).stem
+    total_ink = panels.n_both + panels.n_only_a + panels.n_only_b
+    share = (panels.n_both / total_ink) if total_ink else float("nan")
+
+    # A surface strip can be 1:4 or wider. Side-by-side panels would then be
+    # unreadable slivers, so wide surfaces get one full-width row each.
+    height, width = panels.a.shape
+    wide = width / max(height, 1) > 3.0
+    strip_h = 16.0 * height / max(width, 1)
+
+    if wide:
+        fig = plt.figure(figsize=(16.0, 3 * strip_h + 6.4))
+        grid = fig.add_gridspec(
+            4,
+            3,
+            height_ratios=[strip_h, strip_h, strip_h, 5.6],
+            hspace=0.28,
+            wspace=0.06,
+        )
+        ax_a = fig.add_subplot(grid[0, :])
+        ax_b = fig.add_subplot(grid[1, :])
+        ax_g = fig.add_subplot(grid[2, :])
+    else:
+        fig = plt.figure(figsize=(16.0, 11.4))
+        grid = fig.add_gridspec(2, 3, height_ratios=[1, 1], hspace=0.16, wspace=0.06)
+        ax_a = fig.add_subplot(grid[0, 0])
+        ax_b = fig.add_subplot(grid[0, 1])
+        ax_g = fig.add_subplot(grid[0, 2])
+    ax_za = fig.add_subplot(grid[-1, 0])
+    ax_zb = fig.add_subplot(grid[-1, 1])
+    ax_zg = fig.add_subplot(grid[-1, 2])
+
+    for ax, img, title in (
+        (ax_a, panels.a, label_a),
+        (ax_b, panels.b, label_b),
+        (ax_za, zpanels.a, f"{label_a} — detail"),
+        (ax_zb, zpanels.b, f"{label_b} — detail"),
+    ):
+        ax.imshow(img, cmap="gray", vmin=0, vmax=1, interpolation="nearest")
+        ax.set_title(title, fontsize=11)
+
+    ax_g.imshow(panels.agreement, interpolation="nearest")
+    ax_g.set_title(
+        f"agreement over the whole surface — IoU {got.iou:.3f}",
+        fontsize=11,
+        fontweight="bold",
+    )
+    ax_zg.imshow(zpanels.agreement, interpolation="nearest")
+    ax_zg.set_title(f"detail, {zoom}x{zoom} px, native resolution", fontsize=11)
+
+    # mark the detail window on the full-surface agreement panel
+    f = panels.factor
+    ax_g.add_patch(
+        Rectangle(
+            (zx / f, zy / f),
+            zoom / f,
+            zoom / f,
+            fill=False,
+            edgecolor="#f0a202",
+            linewidth=2.0,
+        )
+    )
+    for spine in ax_zg.spines.values():
+        spine.set_edgecolor("#f0a202")
+        spine.set_linewidth(2.0)
+
+    for ax in (ax_a, ax_b, ax_g, ax_za, ax_zb, ax_zg):
+        ax.set_xticks([])
+        ax.set_yticks([])
+
+    fig.legend(
+        handles=[
+            Patch(facecolor=BOTH, label=f"both called ink ({panels.n_both:,} px)"),
+            Patch(facecolor=ONLY_A, label=f"only {label_a} ({panels.n_only_a:,})"),
+            Patch(facecolor=ONLY_B, label=f"only {label_b} ({panels.n_only_b:,})"),
+            Patch(facecolor=NEITHER, edgecolor="#bbb", label="neither"),
+        ],
+        loc="lower center",
+        bbox_to_anchor=(0.5, 0.032),
+        ncol=4,
+        fontsize=10,
+        frameon=False,
+    )
+
+    headline = args.title or (
+        f"Same surface, same settings, different checkpoint — "
+        f"only {share:.0%} of the ink is called by both"
+    )
+    fig.suptitle(headline, fontsize=15, fontweight="bold", y=0.985)
+    fig.text(
+        0.5,
+        0.012,
+        f"ink = p >= {args.threshold};  {got.n_valid:,} valid px;  "
+        f"Pearson r {got.pearson_r:.3f};  IoU {got.iou:.3f};  Dice {got.dice:.3f};  "
+        f"both/(both+either) = {share:.3f}"
+        + (";  mask: valid_mask.tif" if args.mask else ";  mask: both runs nonzero"),
+        ha="center",
+        fontsize=9,
+        color="#444",
+    )
+    fig.subplots_adjust(top=0.93, bottom=0.085, left=0.012, right=0.988)
+    fig.savefig(args.out, dpi=args.dpi, facecolor="white")
+    print(f"wrote {args.out}")
+    print(
+        f"  both {panels.n_both:,} | only {label_a} {panels.n_only_a:,} "
+        f"| only {label_b} {panels.n_only_b:,} | reproducible share {share:.4f}"
+    )
+    return 0
+
+
 def cmd_surface(args: argparse.Namespace) -> int:
     tags = set(args.tags.split(",")) if args.tags else None
     workdir = Path(args.workdir) if args.workdir else None
@@ -273,6 +412,20 @@ def build_parser() -> argparse.ArgumentParser:
         help="skip surfaces already present in --out",
     )
     population.set_defaults(func=cmd_population)
+
+    figure = sub.add_parser(
+        "figure", help="render what two checkpoints disagree about"
+    )
+    figure.add_argument("a", type=Path)
+    figure.add_argument("b", type=Path)
+    figure.add_argument("--mask", type=Path)
+    figure.add_argument("--out", required=True)
+    figure.add_argument("--label-a")
+    figure.add_argument("--label-b")
+    figure.add_argument("--title")
+    figure.add_argument("--zoom", type=int, default=1024)
+    figure.add_argument("--dpi", type=int, default=130)
+    figure.set_defaults(func=cmd_figure)
     return parser
 
 

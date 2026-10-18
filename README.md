@@ -44,9 +44,28 @@ inkrepro surface PHerc0813 z4704_w080
 inkrepro population manifest.csv --out results/population.csv --resume
 ```
 
+```bash
+# render what the two checkpoints disagree about
+inkrepro figure a.tif b.tif --mask valid_mask.tif --out fig.png \
+  --label-a "seed42 step-020000" --label-b "seed43 step-060000"
+```
+
 `--resume` skips surfaces already present in the output, so an interrupted run continues rather than
 starting over. One surface that fails to download does not stop the run; it is counted and reported
 at the end.
+
+## The figures
+
+![checkpoint disagreement on an atlas surface](figures/p0813_checkpoints.png)
+
+Black is ink both checkpoints called, red and blue are ink only one of them called, pale grey is
+valid surface neither called ink. The detail window is chosen as the area with the *most ink*, not
+the most disagreement — picking the window where the two runs differ most would be choosing the
+evidence to fit the claim.
+
+The ink/no-ink decision is always made at full resolution and only then downsampled for display.
+Downsampling the probabilities first and thresholding afterwards answers a different question: a
+blurred 0.4 and 0.6 average to 0.5 and appear as ink that neither run actually called.
 
 ## The masking rule
 
