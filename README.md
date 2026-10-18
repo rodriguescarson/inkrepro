@@ -104,6 +104,46 @@ arithmetic. `tests/test_metrics.py` covers:
 Run them with `pytest`. `RuntimeWarning` is an error in this project, so a silently degenerate
 computation fails the suite rather than printing a warning nobody reads.
 
+## What it found on the eligible-scroll atlas
+
+Run over all 340 surfaces in `rodriguescarson/eligible-scroll-atlas-renders`, comparing the two
+independently seeded 9.362 um checkpoints (`hybrid_3d2d-seed42/step-020000` and
+`hybrid_3d2d-seed43/step-060000`) at the settings the atlas itself used:
+
+![population distribution](figures/population.png)
+
+| | median IoU |
+|---|---|
+| independent seeds, 335 atlas surfaces, 670 comparisons | **0.160** (IQR 0.127-0.195) |
+| positive control: seed42 vs a soup derived from seed42 | 0.351 (2.20x) |
+| curated on-sheet control w043 (PHerc0139), independent seeds | **0.409** |
+
+Two checkpoints that differ only in training seed agree on about a sixth of the ink they call. The
+median holds across all eight scrolls, from 0.132 (PHerc0268) to 0.191 (PHerc0813).
+
+The positive control is the check that the measure means anything: `soup42_early3` is derived from
+the seed42 run, so it is not an independent opinion, and it scores 2.2x higher. A metric that could
+not tell those apart would not be worth reporting.
+
+The curated control is the one that matters for interpretation. w043 is a hand-made on-sheet surface
+from the labelled corpus, and the *same two checkpoints* reach 0.409 on it -- higher than 669 of the
+670 atlas comparisons. So the low atlas numbers are not simply what these models always do. On a
+surface that is on the papyrus they agree more than twice as well.
+
+**Five of the 340 surfaces are missing, and they are exactly the five that passed the ink screen**
+(`maps_held=True` in the manifest: PHerc0358 z11280_w020, PHerc0813 z5888_w020, z7696_w020,
+z12496_w060, z13088_w040). Their maps are held back, so they returned 404. Since those are the
+surfaces most likely to carry real ink, and real ink plausibly reproduces better, excluding them
+may bias the population figure downward. The number is 335 surfaces, not 340, and not a claim about
+the candidates.
+
+Reproduce with:
+
+```bash
+inkrepro population manifest.csv --out results/population.csv --resume
+python scripts/plot_population.py results/population.csv figures/population.png
+```
+
 ## Limitations
 
 - Agreement between checkpoints is not accuracy. Two models can agree on something that is not ink,

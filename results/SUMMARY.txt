@@ -1,0 +1,27 @@
+inkrepro - cross-checkpoint agreement over the eligible-scroll atlas
+
+surfaces measured          335 of 340
+excluded                     5 (maps_held=True; exactly the 5 ink_pass_v1 candidates)
+comparisons (indep seeds)  670  (335 surfaces x forward and reverse)
+
+INDEPENDENT SEEDS  s42_020k vs s43_060k
+  median IoU   0.1598
+  IQR          0.1274 - 0.1953
+  range        0.0293 - 0.4364
+
+POSITIVE CONTROL  s42_020k vs soup42_early3 (soup derived from seed42)
+  median IoU   0.3510   ratio to independent 2.20x
+
+CURATED ON-SHEET CONTROL  w043 (PHerc0139), same pair: IoU 0.4093
+  atlas surfaces scoring at or above it: 1 of 670  (0.15%)
+
+per scroll (independent seeds):
+  scroll          n   median      min      max
+  PHerc0125     124   0.1425   0.0532   0.2677
+  PHerc0211     180   0.1732   0.0489   0.4364
+  PHerc0257      12   0.1399   0.1032   0.2349
+  PHerc0268      12   0.1323   0.0821   0.1916
+  PHerc0358       4   0.1992   0.1413   0.2068
+  PHerc0800     190   0.1388   0.0293   0.3218
+  PHerc0813     142   0.1905   0.0556   0.2932
+  PHerc0826       6   0.1765   0.0531   0.2546
