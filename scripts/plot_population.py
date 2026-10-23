@@ -1,7 +1,12 @@
 """Plot the distribution of cross-checkpoint agreement over the atlas.
 
 Usage:
-    python scripts/plot_population.py results/population.csv figures/population.png
+    python scripts/plot_population.py results/population.csv figures/population.png \
+        [results/held_out_control.csv]
+
+The held-out control file is optional; when given, each held-out PHerc0139
+winding is drawn as its own marker rather than as a single summary line, because
+four surfaces are four data points and should look like four data points.
 """
 
 from __future__ import annotations
@@ -15,11 +20,6 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Measured by inkrepro on the curated PHerc0139 control surface with the same
-# checkpoint pair. It is not part of the atlas, so it is drawn as a reference
-# line rather than included in the histogram.
-W043_CONTROL = 0.4093
-
 
 def _tags(row: dict) -> tuple[str, ...]:
     return tuple(
@@ -27,17 +27,37 @@ def _tags(row: dict) -> tuple[str, ...]:
     )
 
 
+def _forward(row: dict) -> bool:
+    return not row["run_a"].endswith("_reverse")
+
+
+def _read(path: str, pair: tuple[str, str], forward_only: bool) -> list[dict]:
+    return [
+        r
+        for r in csv.DictReader(open(path))
+        if r["comparison"] == "checkpoint"
+        and _tags(r) == pair
+        and (not forward_only or _forward(r))
+    ]
+
+
 def main(argv: list[str]) -> int:
-    rows = [r for r in csv.DictReader(open(argv[1])) if r["comparison"] == "checkpoint"]
-    indep = np.array(
-        [float(r["iou"]) for r in rows if _tags(r) == ("s42_020k", "s43_060k")]
-    )
+    rows = _read(argv[1], ("s42_020k", "s43_060k"), False)
+    indep = np.array([float(r["iou"]) for r in rows])
     soup = np.array(
-        [float(r["iou"]) for r in rows if _tags(r) == ("s42_020k", "soup42_early3")]
+        [float(r["iou"]) for r in _read(argv[1], ("s42_020k", "soup42_early3"), False)]
     )
     surfaces = len({(r["scroll"], r["mesh"]) for r in rows})
 
-    fig, ax = plt.subplots(figsize=(11.5, 6.2))
+    held = []
+    if len(argv) > 3:
+        held = [
+            (r["mesh"], float(r["iou"]))
+            for r in _read(argv[3], ("s42_020k", "s43_060k"), True)
+        ]
+        held.sort(key=lambda t: t[1])
+
+    fig, ax = plt.subplots(figsize=(11.5, 6.4))
     bins = np.linspace(0, 0.5, 60)
     ax.hist(
         indep,
@@ -45,7 +65,7 @@ def main(argv: list[str]) -> int:
         color="#4a6fa5",
         edgecolor="white",
         linewidth=0.4,
-        label=f"independent seeds, seed42 vs seed43 (n={len(indep)})",
+        label=f"atlas, independent seeds seed42 vs seed43 (n={len(indep)})",
     )
     ax.hist(
         soup,
@@ -58,26 +78,33 @@ def main(argv: list[str]) -> int:
     )
 
     med = float(np.median(indep))
+    top = ax.get_ylim()[1]
     ax.axvline(med, color="#1f3a68", linewidth=2.0)
     ax.annotate(
         f"atlas median {med:.3f}",
-        xy=(med, ax.get_ylim()[1] * 0.92),
-        xytext=(med + 0.010, ax.get_ylim()[1] * 0.97),
+        xy=(med, top * 0.92),
+        xytext=(med + 0.010, top * 0.97),
         color="#1f3a68",
         fontweight="bold",
         fontsize=10,
     )
-    ax.axvline(W043_CONTROL, color="#c0392b", linewidth=2.0, linestyle="--")
-    ax.annotate(
-        f"curated on-sheet control\nw043 (PHerc0139) {W043_CONTROL:.3f}",
-        xy=(W043_CONTROL, ax.get_ylim()[1] * 0.60),
-        xytext=(W043_CONTROL - 0.150, ax.get_ylim()[1] * 0.70),
-        color="#c0392b",
-        fontweight="bold",
-        fontsize=10,
-    )
 
-    above = int((indep >= W043_CONTROL).sum())
+    for i, (mesh, value) in enumerate(held):
+        ax.axvline(value, color="#c0392b", linewidth=1.6, linestyle="--", alpha=0.9)
+        ax.annotate(
+            mesh,
+            xy=(value, top * (0.42 - 0.07 * i)),
+            xytext=(value + 0.006, top * (0.42 - 0.07 * i)),
+            color="#c0392b",
+            fontweight="bold",
+            fontsize=9,
+        )
+    if held:
+        ax.plot(
+            [], [], color="#c0392b", linewidth=1.6, linestyle="--",
+            label=f"held-out on-sheet PHerc0139 windings, forward (n={len(held)})",
+        )
+
     ax.set_xlabel(
         "IoU between the two ink maps  (of every pixel either run called ink, "
         "the fraction both called ink)",
@@ -90,16 +117,19 @@ def main(argv: list[str]) -> int:
         fontsize=13,
         fontweight="bold",
     )
-    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.17), ncol=1,
-              fontsize=9.5, frameon=False)
+    ax.legend(
+        loc="upper center", bbox_to_anchor=(0.5, -0.17), ncol=1,
+        fontsize=9.5, frameon=False,
+    )
     ax.spines[["top", "right"]].set_visible(False)
     fig.text(
         0.5,
         0.005,
-        f"ink = p >= 0.5, measured over each surface's valid mask;  "
-        f"{above} of {len(indep)} atlas comparisons reach the curated control;  "
-        f"5 of 340 surfaces excluded (maps held, and they are exactly the 5 "
-        f"ink-screen candidates)",
+        "ink = p >= 0.5, measured over each surface's valid mask. 5 of 340 surfaces are "
+        "excluded: their maps are held back, and they are exactly the 5 ink-screen candidates.\n"
+        "IoU rises steeply with how much ink a surface calls (Spearman +0.83), so raw values "
+        "are not comparable across surfaces. The four held-out windings are\nmarked here for "
+        "position only; the comparison that controls for coverage is in figures/ink_coverage.png.",
         ha="center",
         fontsize=8.5,
         color="#444",

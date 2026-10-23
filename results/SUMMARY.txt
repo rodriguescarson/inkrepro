@@ -2,20 +2,32 @@ inkrepro - cross-checkpoint agreement over the eligible-scroll atlas
 
 surfaces measured          335 of 340
 excluded                     5 (maps_held=True; exactly the 5 ink_pass_v1 candidates)
-comparisons (indep seeds)  670  (335 surfaces x forward and reverse)
+comparisons (indep seeds)  670  (forward and reverse)
 
 INDEPENDENT SEEDS  s42_020k vs s43_060k
   median IoU   0.1598
   IQR          0.1274 - 0.1953
   range        0.0293 - 0.4364
+  forward      0.1607      reverse 0.1583
 
 POSITIVE CONTROL  s42_020k vs soup42_early3 (soup derived from seed42)
   median IoU   0.3510   ratio to independent 2.20x
 
-CURATED ON-SHEET CONTROL  w043 (PHerc0139), same pair: IoU 0.4093
-  atlas surfaces scoring at or above it: 1 of 670  (0.15%)
+CONFOUND  agreement tracks how much ink is called
+  Spearman rho(coverage, IoU) = +0.829   (forward, n=335)
+  Q1 least ink  coverage 0.0396  median IoU 0.1117
+  Q2            coverage 0.0548  median IoU 0.1416
+  Q3            coverage 0.0796  median IoU 0.1728
+  Q4 most ink   coverage 0.1217  median IoU 0.2159
 
-per scroll (independent seeds):
+HELD-OUT ON-SHEET CONTROL  PHerc0139 windings in neither ink_9um training list
+  (masks reconstructed; in-band reconstruction error mean -0.010, max 0.047)
+  w051  coverage 0.1029  IoU 0.2703  ink-matched atlas median 0.1966 (n=87)  delta +0.0738
+  w055  coverage 0.1181  IoU 0.2916  ink-matched atlas median 0.2081 (n=70)  delta +0.0835
+  w058  coverage 0.1698  IoU 0.3369  ink-matched atlas median 0.2387 (n=17)  delta +0.0982
+  w059  coverage 0.1656  IoU 0.3328  ink-matched atlas median 0.2283 (n=19)  delta +0.1045
+
+per scroll (independent seeds, forward and reverse):
   scroll          n   median      min      max
   PHerc0125     124   0.1425   0.0532   0.2677
   PHerc0211     180   0.1732   0.0489   0.4364
