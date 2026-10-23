@@ -2,3 +2,7 @@ __pycache__/
 *.pyc
 .venv/
 # results/population.csv is committed: it is the evidence for the README
+.DS_Store
+*.egg-info/
+SUBMISSION_OCT.md
+DISCORD_POST.md

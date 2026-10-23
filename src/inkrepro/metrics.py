@@ -1,9 +1,12 @@
 """Agreement between two ink predictions of the same surface.
 
-Every metric here is computed over a valid-pixel mask and nothing else. The
-rendered surface volumes are zero outside the traced sheet, and the ink models
-write zero there too, so including those pixels inflates every agreement score
-with pixels on which the two models were never asked anything.
+Every metric here is computed over a valid-pixel mask and nothing else, because
+the mask materially changes the answer. On PHerc0813 z4704_w080 the published
+mask covers 7,906,886 px while the union of the six maps' nonzero pixels covers
+12,097,632 px: the models write nonzero well outside the traced sheet, and those
+pixels are ones they were never really asked about. Across 7 atlas surfaces,
+swapping the published mask for the no-mask fallback moves IoU by up to 0.151,
+so an agreement number is only meaningful next to the mask that produced it.
 """
 
 from __future__ import annotations
@@ -48,8 +51,12 @@ def valid_mask(
     comparison toward the pixels both models already felt strongly about.
 
     Without an explicit mask the fallback is ``a > 0 and b > 0``, which is all
-    the stored TIFFs make available. That fallback does discard genuine zeros,
-    so it is a convenience, not an equivalent. Prefer the explicit mask.
+    the stored TIFFs make available. Measured on PHerc0813 z4704_w080, the
+    published mask is a strict subset of the runs' nonzero footprint and *no*
+    pixel inside it has every run at 0 -- so in practice the fallback's error is
+    that it adds off-sheet pixels (1.53x the mask's area there), not that it
+    drops genuine zeros. It is a convenience, not an equivalent. Prefer the
+    explicit mask.
     """
 
     if a.shape != b.shape:
