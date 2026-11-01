@@ -21,11 +21,12 @@ CONFOUND  agreement tracks how much ink is called
   Q4 most ink   coverage 0.1217  median IoU 0.2159
 
 HELD-OUT ON-SHEET CONTROL  PHerc0139 windings in neither ink_9um training list
-  (masks reconstructed; in-band reconstruction error mean -0.010, max 0.047)
-  w051  coverage 0.1029  IoU 0.2703  ink-matched atlas median 0.1966 (n=87)  delta +0.0738
-  w055  coverage 0.1181  IoU 0.2916  ink-matched atlas median 0.2081 (n=70)  delta +0.0835
-  w058  coverage 0.1698  IoU 0.3369  ink-matched atlas median 0.2387 (n=17)  delta +0.0982
-  w059  coverage 0.1656  IoU 0.3328  ink-matched atlas median 0.2283 (n=19)  delta +0.1045
+  (masks computed from the published surface volume: erode(max_z(volume)>0, 64);
+   scripts/held_masks.py, written to results/masks/)
+  w051  coverage 0.1014  IoU 0.2795  ink-matched atlas median 0.1966 (n=89)  delta +0.0830
+  w055  coverage 0.1166  IoU 0.3011  ink-matched atlas median 0.2076 (n=69)  delta +0.0935
+  w058  coverage 0.1685  IoU 0.3440  ink-matched atlas median 0.2387 (n=17)  delta +0.1053
+  w059  coverage 0.1647  IoU 0.3383  ink-matched atlas median 0.2307 (n=20)  delta +0.1075
 
 per scroll (independent seeds, forward and reverse):
   scroll          n   median      min      max

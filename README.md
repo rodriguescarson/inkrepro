@@ -182,29 +182,38 @@ Four windings of the same scroll, on the same 9.362 um scan, appear in neither t
 
 | winding | ink coverage | IoU, forward | ink-matched atlas median | delta | percentile |
 |---|---|---|---|---|---|
-| w051 | 0.103 | 0.270 | 0.197 (n=87) | **+0.074** | 98.9% |
-| w055 | 0.118 | 0.292 | 0.208 (n=70) | **+0.084** | 98.6% |
-| w058 | 0.170 | 0.337 | 0.239 (n=17) | **+0.098** | 100% |
-| w059 | 0.166 | 0.333 | 0.228 (n=19) | **+0.105** | 100% |
+| w051 | 0.101 | 0.280 | 0.197 (n=89) | **+0.083** | 98.9% |
+| w055 | 0.117 | 0.301 | 0.208 (n=69) | **+0.093** | 98.6% |
+| w058 | 0.168 | 0.344 | 0.239 (n=17) | **+0.105** | 100% |
+| w059 | 0.165 | 0.338 | 0.231 (n=20) | **+0.108** | 100% |
 
-"Ink-matched" means atlas surfaces whose coverage is within +/-25% of that winding's. Read the other
-face of the sheet and the effect shrinks to +0.021 to +0.060 (reverse direction, 73rd-92nd
-percentile), which is what you would expect if it is being carried by ink that is really there.
+"Ink-matched" means atlas surfaces whose coverage -- the mean of the two runs' ink fractions -- is
+within a factor of 1.25 either way of that winding's (`scripts/ink_matched.py`). Read the other face
+of the sheet and the effect shrinks to +0.029 to +0.079 (reverse direction, 82nd-93rd percentile),
+which is what you would expect if it is being carried by ink that is really there.
 
 ![held-out surface](figures/w058_checkpoints.png)
 
-**What this is worth, stated carefully.** All four held-out windings beat their ink-matched atlas
-band, in the same direction, at the 98.6th percentile or above. But these four surfaces ship no
-`valid_mask.tif`, so their masks are reconstructed as `erode(union of nonzero footprints, 64)` --
-the same construction the atlas used, applied to what is available. Measured against the published
-mask on 10 atlas surfaces in the same coverage band, that reconstruction errs by mean -0.010 and at
-most **0.047**. That is about half the smallest effect, so the *sign* is robust to the worst error
-observed, while the *magnitude* is good to roughly +/-0.05.
+**The masks here are computed, not reconstructed.** These four windings ship no
+`valid_mask.tif`, but they were inferred on the team's public 9.362 um surface volumes, so the
+atlas's own mask is computable from the source: `erode(max over z of (volume > 0), 64)`. That is
+what `scripts/held_masks.py` does, streaming each volume chunk by chunk from the open-data bucket
+and collapsing it on arrival, so nothing is stored whole. The four masks are committed under
+[`results/masks/`](results/masks). As a check on the construction, the same masks fall out of a
+taxicab distance transform (`distance_transform_cdt(...) > 64`) bit for bit on all four.
 
-So: suggestive, not established. What would settle it is the published `valid_mask.tif` for these
-four windings, or their surface volumes, so the mask can be computed exactly rather than
-reconstructed. Until then this is one more surface-level screen worth checking, not a result to
-build on.
+**What that changed.** An earlier version of this table used a mask reconstructed from the ink maps'
+own footprint and carried a +/-0.047 bound, estimated by comparing reconstructed against published
+masks on atlas surfaces that have both. Measured directly on these four, the reconstruction was
+wrong by +0.0055 to +0.0095 on the rows in the table (mean +0.0078) -- the estimated bound was
+conservative by about five times. The reconstructed masks were 5.0 to 7.2 per cent too large, which
+is off-sheet canvas being scored, and every delta moved *up* when it was removed.
+
+**What this is worth, stated carefully.** All four held-out windings beat their ink-matched atlas
+band, in the same direction, at the 98.6th percentile or above, under the same mask definition the
+atlas surfaces are measured with. What remains is sample size, not masking: four surfaces, one
+scroll, one scan type, one pair of checkpoints. It is a result worth replicating on another scroll,
+not a law.
 
 ## Limitations
 
@@ -222,7 +231,7 @@ build on.
   `step-010000` on both seeds.
 - `direction` rows answer a different question and are labelled, not excluded. Filter on the
   `comparison` column before computing any summary.
-- The held-out on-sheet result rests on four surfaces with reconstructed masks. See the caveat in
+- The held-out on-sheet result rests on four surfaces of one scroll. See the caveat in
   that section, and `CORRECTIONS.md` for the control it replaced.
 
 ## Licence

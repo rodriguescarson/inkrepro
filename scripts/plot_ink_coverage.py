@@ -79,12 +79,15 @@ def main(argv):
     ax.plot(bx, by, color="#1f3a68", linewidth=2.2, marker="o", markersize=4,
             label="atlas median in equal-count coverage bins")
 
-    # label above or below alternately, so neighbouring windings do not collide
+    # Alternate the label on both axes, left-and-up then right-and-down. These four
+    # windings sit in two close pairs, so offsetting only vertically still collides.
     for i, (cov, iou, mesh) in enumerate(sorted(held)):
         ax.scatter([cov], [iou], s=90, marker="D", color="#c0392b",
                    edgecolor="white", linewidth=1.0, zorder=5)
-        dy = 0.009 if i % 2 == 0 else -0.015
-        ax.annotate(mesh, xy=(cov, iou), xytext=(cov + 0.005, iou + dy),
+        left = i % 2 == 0
+        dx, dy = (-0.006, 0.010) if left else (0.006, -0.017)
+        ax.annotate(mesh, xy=(cov, iou), xytext=(cov + dx, iou + dy),
+                    ha="right" if left else "left",
                     color="#c0392b", fontweight="bold", fontsize=9, zorder=6)
     if held:
         ax.scatter([], [], s=90, marker="D", color="#c0392b", edgecolor="white",
