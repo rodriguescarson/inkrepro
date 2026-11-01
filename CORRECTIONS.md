@@ -46,3 +46,27 @@ published mask is a strict subset of that union, and there are zero pixels insid
 where every run wrote 0. The models therefore write nonzero *outside* the mask, and the
 no-mask fallback's error is that it adds off-sheet pixels, not that it discards genuine
 zeros. The README now says this, and `src/inkrepro/metrics.py` carries the measurement.
+
+## 2026-11-02 — the held-out table was computed with reconstructed masks (numbers superseded)
+
+Between 23 October and today, the held-out on-sheet table reported deltas of +0.074, +0.084,
++0.098 and +0.105 over the ink-matched atlas band, measured with each winding's mask
+reconstructed as `erode(union of nonzero footprints, 64)`. Those four windings ship no
+`valid_mask.tif`, and the reconstruction carried a stated bound of +/-0.047, estimated by
+comparing reconstructed against published masks on atlas surfaces that have both.
+
+The masks are now computed from the source instead. The four windings were inferred on the
+team's public 9.362 um surface volumes, so the atlas's own definition,
+`erode(max over z of (volume > 0), 64)`, applies directly; `scripts/held_masks.py` streams
+each volume from the open-data bucket and writes the mask, and the four are committed under
+`results/masks/`.
+
+The reconstructed masks were 5.0 to 7.2 per cent larger than the real ones -- off-sheet canvas
+being scored. Correcting it moved the four table rows by +0.0055 to +0.0095 (mean +0.0078),
+so the stated +/-0.047 bound was conservative by roughly five times, and every delta moved up:
++0.083, +0.093, +0.105, +0.108, at the same 98.6th-to-100th percentiles. The reverse-direction
+check moved from +0.021..+0.060 to +0.029..+0.079.
+
+The earlier numbers were not wrong about the direction of the effect and were published with a
+bound that covered the error. They are superseded, not withdrawn. What changed is that the
+masking caveat is now a measurement rather than an estimate.

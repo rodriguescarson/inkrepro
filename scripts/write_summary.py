@@ -82,7 +82,8 @@ def main(pop_path, held_path, out_path):
           f"median IoU {st.median([b for _, b in c]):.4f}")
     w("")
     w("HELD-OUT ON-SHEET CONTROL  PHerc0139 windings in neither ink_9um training list")
-    w("  (masks reconstructed; in-band reconstruction error mean -0.010, max 0.047)")
+    w("  (masks computed from the published surface volume: erode(max_z(volume)>0, 64);")
+    w("   scripts/held_masks.py, written to results/masks/)")
     for r in sorted(pair(held, "s42_020k", "s43_060k", forward=True),
                     key=lambda r: r["mesh"]):
         band = [float(x["iou"]) for x in f_ind if 0.8 * cov(r) <= cov(x) <= 1.25 * cov(r)]
