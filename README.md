@@ -227,8 +227,11 @@ not a law.
 - `soup42_early3` is derived from the seed42 run, so a `s42_020k` vs `soup42_early3` row is not two
   independent opinions.
 - The available checkpoint pairs differ in training step as well as seed, so a single
-  cross-checkpoint number mixes the two. Separating them needs matched-step pairs, which exist for
-  `step-010000` on both seeds.
+  cross-checkpoint number mixes the two. Separating them needs matched-step pairs. Those exist for
+  every published step -- `scrollprize/ink_9um` ships both seeds at 010000, 020000, 030000, 040000,
+  050000, 060000 and 075000 -- so the experiment is a question of inference time, not of data.
+  Running one matched step would say how much of the disagreement is the seed and how much is the
+  training step; this repo cannot currently tell you.
 - `direction` rows answer a different question and are labelled, not excluded. Filter on the
   `comparison` column before computing any summary.
 - The held-out on-sheet result rests on four surfaces of one scroll. See the caveat in
