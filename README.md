@@ -215,6 +215,37 @@ atlas surfaces are measured with. What remains is sample size, not masking: four
 scroll, one scan type, one pair of checkpoints. It is a result worth replicating on another scroll,
 not a law.
 
+## Seed or training step?
+
+The two checkpoints behind the headline, `s42_020k` and `s43_060k`, differ in **both** the training
+seed and the training step, so the published figure cannot by itself say which it measures. That is
+the first objection a reader should raise.
+
+It was settled by pre-registration rather than by argument. `prereg/matched-step.md` fixed the
+sample, the statistic and the interpretation thresholds before any inference ran;
+`prereg/matched-step-result.md` reports what came back, with the environment and scorer controls
+that ran first. Both are in this repository, and the registration committed to publishing the
+result whichever way it landed.
+
+| | matched-step pair | mixed pair | median paired difference |
+|---|---|---|---|
+| at a fixed 0.5 threshold (registered) | 0.1241 | 0.1540 | **-0.0285** (34/40 negative, p = 8.4e-06) |
+| with ink coverage matched (exploratory) | 0.1589 | 0.1493 | **-0.0005** (20/20, p = 1.0) |
+
+Matching the training step made agreement *worse*, which the registration had named in advance as
+the surprising case. Coverage is why: `s43_020k` calls about half as much ink as `s42_020k` while
+`s43_060k` calls about 1.7x as much, and IoU is bounded by the ratio of the two coverages. Once both
+pairs are made to call the same amount of ink the difference disappears forward (p = 1.0) and is no
+longer distinguishable from zero in reverse. The simple ceiling argument accounts for the forward
+direction but *not* the reverse one, where the ceiling slightly favours the matched-step pair and
+the effect is larger anyway; `prereg/matched-step-result.md` says so rather than rounding it off.
+
+So the published 16.0 per cent is not an artefact of comparing an undertrained checkpoint against a
+better-trained one. What it is, on this sample, is two checkpoints disagreeing about ink coverage
+about as much as they disagree about ink location -- and a fixed-threshold IoU cannot tell those
+apart. Read `prereg/matched-step-result.md` before quoting any of it; the limitations there are
+real.
+
 ## Limitations
 
 - Agreement between checkpoints is not accuracy. Two models can agree on something that is not ink,
@@ -226,12 +257,11 @@ not a law.
   IoU by up to 0.151 (see "The masking rule").
 - `soup42_early3` is derived from the seed42 run, so a `s42_020k` vs `soup42_early3` row is not two
   independent opinions.
-- The available checkpoint pairs differ in training step as well as seed, so a single
-  cross-checkpoint number mixes the two. Separating them needs matched-step pairs. Those exist for
-  every published step -- `scrollprize/ink_9um` ships both seeds at 010000, 020000, 030000, 040000,
-  050000, 060000 and 075000 -- so the experiment is a question of inference time, not of data.
-  Running one matched step would say how much of the disagreement is the seed and how much is the
-  training step; this repo cannot currently tell you.
+- The headline pair differs in training step as well as seed. That has now been separated on 40
+  surfaces by running the matched step `s43_020k`: see **"Seed or training step?"** below. The short
+  version is that matching the step does not improve agreement, and that the difference a fixed
+  threshold charges as spatial disagreement is mostly a difference in how much ink each checkpoint
+  calls. It rests on 40 surfaces of 335 and one step of the seven published.
 - `direction` rows answer a different question and are labelled, not excluded. Filter on the
   `comparison` column before computing any summary.
 - The held-out on-sheet result rests on four surfaces of one scroll. See the caveat in
