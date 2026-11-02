@@ -57,3 +57,19 @@ scripts/matched_step.py          # the readout tables, from the two CSVs
 `matched_step_run.sh` is transcribed from the script that ran, pod paths and all. It is kept
 verbatim rather than tidied, because a cleaned-up version would be a different script from the
 one that produced the numbers.
+
+## Where the raw maps are
+
+The 80 inference maps this experiment scored — 40 surfaces, forward and reverse, as
+`<scroll>/<surface>/s43_020k.tif` and `..._reverse.tif` — are not in this repository; at 341 MB
+they do not belong in git. They are archived outside it as a single tar:
+
+```
+sha256  1fa3fb2a3069d47a45c54e81b16ea4747c6c23e03000e6031b25ca99536cf830
+```
+
+The per-surface numbers derived from them are committed in full, in
+`results/matched_step.csv` and `results/matched_step_coverage_matched.csv`, so every table in
+`matched-step-result.md` can be checked without the maps. The maps themselves are only needed to
+re-score under a different rule, or to extend the sample beyond these 40 surfaces — which is what
+they are being kept for. Ask if you want them.
