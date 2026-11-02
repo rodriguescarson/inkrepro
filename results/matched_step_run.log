@@ -1,0 +1,243 @@
+2026-11-02T07:37:05Z BATCH START 40 surfaces
+{"shape": [31, 1200, 6540], "padded": [31, 1216, 6592], "mode": "view"}
+  matched_step forward IoU 0.130051  n_valid 4077246
+  mixed        forward IoU 0.136497  n_valid 4077246
+  matched_step reverse IoU 0.092800  n_valid 4077246
+  mixed        reverse IoU 0.117505  n_valid 4077246
+2026-11-02T07:38:01Z OK PHerc0125/z14144_w040  56s  rows=4
+{"shape": [31, 1120, 6680], "padded": [31, 1152, 6720], "mode": "view"}
+  matched_step forward IoU 0.105195  n_valid 4360110
+  mixed        forward IoU 0.139477  n_valid 4360110
+  matched_step reverse IoU 0.078146  n_valid 4360110
+  mixed        reverse IoU 0.141488  n_valid 4360110
+2026-11-02T07:39:46Z OK PHerc0125/z15344_w040  105s  rows=4
+{"shape": [31, 1240, 14440], "padded": [31, 1280, 14464], "mode": "view"}
+  matched_step forward IoU 0.247940  n_valid 8823381
+  mixed        forward IoU 0.174487  n_valid 8823381
+  matched_step reverse IoU 0.344679  n_valid 8823381
+  mixed        reverse IoU 0.267728  n_valid 8823381
+2026-11-02T07:43:00Z OK PHerc0125/z8144_w100  193s  rows=4
+{"shape": [31, 1520, 9480], "padded": [31, 1536, 9536], "mode": "view"}
+  matched_step forward IoU 0.142958  n_valid 5856454
+  mixed        forward IoU 0.162009  n_valid 5856454
+  matched_step reverse IoU 0.091037  n_valid 5856454
+  mixed        reverse IoU 0.125174  n_valid 5856454
+2026-11-02T07:44:18Z OK PHerc0125/z8736_w060  78s  rows=4
+{"shape": [31, 1220, 11860], "padded": [31, 1280, 11904], "mode": "view"}
+  matched_step forward IoU 0.093639  n_valid 7488024
+  mixed        forward IoU 0.117658  n_valid 7488024
+  matched_step reverse IoU 0.076418  n_valid 7488024
+  mixed        reverse IoU 0.099737  n_valid 7488024
+2026-11-02T07:45:35Z OK PHerc0125/z8736_w080  77s  rows=4
+{"shape": [31, 1340, 12180], "padded": [31, 1344, 12224], "mode": "view"}
+  matched_step forward IoU 0.081087  n_valid 7703130
+  mixed        forward IoU 0.118087  n_valid 7703130
+  matched_step reverse IoU 0.074271  n_valid 7703130
+  mixed        reverse IoU 0.074898  n_valid 7703130
+2026-11-02T07:46:52Z OK PHerc0125/z9344_w080  77s  rows=4
+{"shape": [31, 1600, 14040], "padded": [31, 1600, 14080], "mode": "view"}
+  matched_step forward IoU 0.336089  n_valid 3222400
+  mixed        forward IoU 0.256179  n_valid 3222400
+  matched_step reverse IoU 0.346193  n_valid 3222400
+  mixed        reverse IoU 0.271897  n_valid 3222400
+2026-11-02T07:47:43Z OK PHerc0211/z10320_w100  51s  rows=4
+{"shape": [31, 1200, 5320], "padded": [31, 1216, 5376], "mode": "view"}
+  matched_step forward IoU 0.093757  n_valid 3566414
+  mixed        forward IoU 0.132816  n_valid 3566414
+  matched_step reverse IoU 0.104080  n_valid 3566414
+  mixed        reverse IoU 0.145652  n_valid 3566414
+2026-11-02T07:48:25Z OK PHerc0211/z11520_w040  42s  rows=4
+{"shape": [31, 2220, 5220], "padded": [31, 2240, 5248], "mode": "view"}
+  matched_step forward IoU 0.155418  n_valid 3790980
+  mixed        forward IoU 0.228236  n_valid 3790980
+  matched_step reverse IoU 0.115468  n_valid 3790980
+  mixed        reverse IoU 0.167525  n_valid 3790980
+2026-11-02T07:49:11Z OK PHerc0211/z12720_w040  46s  rows=4
+{"shape": [31, 1700, 7560], "padded": [31, 1728, 7616], "mode": "view"}
+  matched_step forward IoU 0.165093  n_valid 5586374
+  mixed        forward IoU 0.248456  n_valid 5586374
+  matched_step reverse IoU 0.176573  n_valid 5586374
+  mixed        reverse IoU 0.223023  n_valid 5586374
+2026-11-02T07:50:09Z OK PHerc0211/z14512_w060  58s  rows=4
+{"shape": [31, 1120, 14080], "padded": [31, 1152, 14080], "mode": "view"}
+  matched_step forward IoU 0.329107  n_valid 2160723
+  mixed        forward IoU 0.263819  n_valid 2160723
+  matched_step reverse IoU 0.412068  n_valid 2160723
+  mixed        reverse IoU 0.332202  n_valid 2160723
+2026-11-02T07:50:58Z OK PHerc0211/z6112_w100  49s  rows=4
+{"shape": [31, 1120, 6080], "padded": [31, 1152, 6080], "mode": "view"}
+  matched_step forward IoU 0.178444  n_valid 4054464
+  mixed        forward IoU 0.170772  n_valid 4054464
+  matched_step reverse IoU 0.173920  n_valid 4054464
+  mixed        reverse IoU 0.242539  n_valid 4054464
+2026-11-02T07:51:48Z OK PHerc0211/z9712_w040  50s  rows=4
+{"shape": [31, 1240, 4940], "padded": [31, 1280, 4992], "mode": "view"}
+  matched_step forward IoU 0.123340  n_valid 3317536
+  mixed        forward IoU 0.141583  n_valid 3317536
+  matched_step reverse IoU 0.098820  n_valid 3317536
+  mixed        reverse IoU 0.103172  n_valid 3317536
+2026-11-02T07:52:31Z OK PHerc0257/z3744_w040  43s  rows=4
+{"shape": [31, 1320, 2600], "padded": [31, 1344, 2624], "mode": "view"}
+  matched_step forward IoU 0.141918  n_valid 1617674
+  mixed        forward IoU 0.146227  n_valid 1617674
+  matched_step reverse IoU 0.075909  n_valid 1617674
+  mixed        reverse IoU 0.109190  n_valid 1617674
+2026-11-02T07:53:00Z OK PHerc0257/z4352_w020  29s  rows=4
+{"shape": [31, 1620, 8360], "padded": [31, 1664, 8384], "mode": "view"}
+  matched_step forward IoU 0.183893  n_valid 5521090
+  mixed        forward IoU 0.135462  n_valid 5521090
+  matched_step reverse IoU 0.137348  n_valid 5521090
+  mixed        reverse IoU 0.136047  n_valid 5521090
+2026-11-02T07:53:58Z OK PHerc0257/z4352_w060  58s  rows=4
+{"shape": [31, 1260, 6140], "padded": [31, 1280, 6144], "mode": "view"}
+  matched_step forward IoU 0.108768  n_valid 4172540
+  mixed        forward IoU 0.157224  n_valid 4172540
+  matched_step reverse IoU 0.096834  n_valid 4172540
+  mixed        reverse IoU 0.154983  n_valid 4172540
+2026-11-02T07:54:47Z OK PHerc0800/z12864_w040  49s  rows=4
+{"shape": [31, 1120, 3220], "padded": [31, 1152, 3264], "mode": "view"}
+  matched_step forward IoU 0.031182  n_valid 1837864
+  mixed        forward IoU 0.078116  n_valid 1837864
+  matched_step reverse IoU 0.070085  n_valid 1837864
+  mixed        reverse IoU 0.112761  n_valid 1837864
+2026-11-02T07:55:40Z OK PHerc0800/z14672_w020  53s  rows=4
+{"shape": [31, 1120, 3100], "padded": [31, 1152, 3136], "mode": "view"}
+  matched_step forward IoU 0.040315  n_valid 1755410
+  mixed        forward IoU 0.081704  n_valid 1755410
+  matched_step reverse IoU 0.129636  n_valid 1755410
+  mixed        reverse IoU 0.202062  n_valid 1755410
+2026-11-02T07:56:13Z OK PHerc0800/z15264_w020  33s  rows=4
+{"shape": [31, 1340, 11040], "padded": [31, 1344, 11072], "mode": "view"}
+  matched_step forward IoU 0.097111  n_valid 7296326
+  mixed        forward IoU 0.136946  n_valid 7296326
+  matched_step reverse IoU 0.132454  n_valid 7296326
+  mixed        reverse IoU 0.175869  n_valid 7296326
+2026-11-02T07:57:25Z OK PHerc0800/z16464_w080  72s  rows=4
+{"shape": [31, 1800, 10320], "padded": [31, 1856, 10368], "mode": "view"}
+  matched_step forward IoU 0.194586  n_valid 7225574
+  mixed        forward IoU 0.202241  n_valid 7225574
+  matched_step reverse IoU 0.161698  n_valid 7225574
+  mixed        reverse IoU 0.212536  n_valid 7225574
+2026-11-02T07:58:42Z OK PHerc0800/z17072_w080  77s  rows=4
+{"shape": [31, 1740, 13040], "padded": [31, 1792, 13056], "mode": "view"}
+  matched_step forward IoU 0.166391  n_valid 8971082
+  mixed        forward IoU 0.230719  n_valid 8971082
+  matched_step reverse IoU 0.186512  n_valid 8971082
+  mixed        reverse IoU 0.248120  n_valid 8971082
+2026-11-02T08:00:08Z OK PHerc0800/z17072_w100  86s  rows=4
+{"shape": [31, 1300, 2720], "padded": [31, 1344, 2752], "mode": "view"}
+  matched_step forward IoU 0.070246  n_valid 1974140
+  mixed        forward IoU 0.101186  n_valid 1974140
+  matched_step reverse IoU 0.070636  n_valid 1974140
+  mixed        reverse IoU 0.164305  n_valid 1974140
+2026-11-02T08:00:40Z OK PHerc0800/z6272_w020  32s  rows=4
+{"shape": [31, 1520, 10260], "padded": [31, 1536, 10304], "mode": "view"}
+  matched_step forward IoU 0.051655  n_valid 7593244
+  mixed        forward IoU 0.096652  n_valid 7593244
+  matched_step reverse IoU 0.081152  n_valid 7593244
+  mixed        reverse IoU 0.108087  n_valid 7593244
+2026-11-02T08:01:50Z OK PHerc0800/z6864_w080  70s  rows=4
+{"shape": [31, 1320, 2680], "padded": [31, 1344, 2688], "mode": "view"}
+  matched_step forward IoU 0.069235  n_valid 1748476
+  mixed        forward IoU 0.127338  n_valid 1748476
+  matched_step reverse IoU 0.060945  n_valid 1748476
+  mixed        reverse IoU 0.128935  n_valid 1748476
+2026-11-02T08:02:20Z OK PHerc0800/z7472_w020  30s  rows=4
+{"shape": [31, 1460, 5320], "padded": [31, 1472, 5376], "mode": "view"}
+  matched_step forward IoU 0.042246  n_valid 3667840
+  mixed        forward IoU 0.101677  n_valid 3667840
+  matched_step reverse IoU 0.072549  n_valid 3667840
+  mixed        reverse IoU 0.127491  n_valid 3667840
+2026-11-02T08:03:03Z OK PHerc0800/z7472_w040  43s  rows=4
+{"shape": [31, 1480, 7720], "padded": [31, 1536, 7744], "mode": "view"}
+  matched_step forward IoU 0.094562  n_valid 5865212
+  mixed        forward IoU 0.165523  n_valid 5865212
+  matched_step reverse IoU 0.117520  n_valid 5865212
+  mixed        reverse IoU 0.151214  n_valid 5865212
+2026-11-02T08:04:01Z OK PHerc0800/z7472_w060  58s  rows=4
+{"shape": [31, 1740, 12360], "padded": [31, 1792, 12416], "mode": "view"}
+  matched_step forward IoU 0.125161  n_valid 9306354
+  mixed        forward IoU 0.133524  n_valid 9306354
+  matched_step reverse IoU 0.093515  n_valid 9306354
+  mixed        reverse IoU 0.108314  n_valid 9306354
+2026-11-02T08:05:26Z OK PHerc0800/z7472_w100  85s  rows=4
+{"shape": [31, 1420, 7540], "padded": [31, 1472, 7552], "mode": "view"}
+  matched_step forward IoU 0.105886  n_valid 5672864
+  mixed        forward IoU 0.117497  n_valid 5672864
+  matched_step reverse IoU 0.104291  n_valid 5672864
+  mixed        reverse IoU 0.132741  n_valid 5672864
+2026-11-02T08:06:30Z OK PHerc0800/z8064_w060  64s  rows=4
+{"shape": [31, 1540, 9860], "padded": [31, 1600, 9920], "mode": "view"}
+  matched_step forward IoU 0.106655  n_valid 7467634
+  mixed        forward IoU 0.109666  n_valid 7467634
+  matched_step reverse IoU 0.119564  n_valid 7467634
+  mixed        reverse IoU 0.164340  n_valid 7467634
+2026-11-02T08:07:43Z OK PHerc0800/z8064_w080  73s  rows=4
+{"shape": [31, 1640, 12200], "padded": [31, 1664, 12224], "mode": "view"}
+  matched_step forward IoU 0.148562  n_valid 9046470
+  mixed        forward IoU 0.159698  n_valid 9046470
+  matched_step reverse IoU 0.137399  n_valid 9046470
+  mixed        reverse IoU 0.118476  n_valid 9046470
+2026-11-02T08:09:16Z OK PHerc0800/z8064_w100  93s  rows=4
+{"shape": [31, 1600, 8160], "padded": [31, 1600, 8192], "mode": "view"}
+  matched_step forward IoU 0.133739  n_valid 5985620
+  mixed        forward IoU 0.158653  n_valid 5985620
+  matched_step reverse IoU 0.089410  n_valid 5985620
+  mixed        reverse IoU 0.083866  n_valid 5985620
+2026-11-02T08:10:20Z OK PHerc0800/z8672_w060  64s  rows=4
+{"shape": [31, 1260, 6200], "padded": [31, 1280, 6208], "mode": "view"}
+  matched_step forward IoU 0.109768  n_valid 4078890
+  mixed        forward IoU 0.174595  n_valid 4078890
+  matched_step reverse IoU 0.261732  n_valid 4078890
+  mixed        reverse IoU 0.278177  n_valid 4078890
+2026-11-02T08:11:06Z OK PHerc0800/z9264_w040  45s  rows=4
+{"shape": [31, 1600, 11320], "padded": [31, 1600, 11328], "mode": "view"}
+  matched_step forward IoU 0.121677  n_valid 7694216
+  mixed        forward IoU 0.158916  n_valid 7694216
+  matched_step reverse IoU 0.131154  n_valid 7694216
+  mixed        reverse IoU 0.104990  n_valid 7694216
+2026-11-02T08:12:20Z OK PHerc0800/z9264_w080  74s  rows=4
+{"shape": [31, 1760, 10680], "padded": [31, 1792, 10688], "mode": "view"}
+  matched_step forward IoU 0.132897  n_valid 7311934
+  mixed        forward IoU 0.204098  n_valid 7311934
+  matched_step reverse IoU 0.101802  n_valid 7311934
+  mixed        reverse IoU 0.112425  n_valid 7311934
+2026-11-02T08:13:31Z OK PHerc0813/z12496_w080  71s  rows=4
+{"shape": [31, 1580, 7260], "padded": [31, 1600, 7296], "mode": "view"}
+  matched_step forward IoU 0.124781  n_valid 5429004
+  mixed        forward IoU 0.150752  n_valid 5429004
+  matched_step reverse IoU 0.143876  n_valid 5429004
+  mixed        reverse IoU 0.143867  n_valid 5429004
+2026-11-02T08:14:28Z OK PHerc0813/z13696_w060  57s  rows=4
+{"shape": [31, 1620, 8220], "padded": [31, 1664, 8256], "mode": "view"}
+  matched_step forward IoU 0.121271  n_valid 5845100
+  mixed        forward IoU 0.243649  n_valid 5845100
+  matched_step reverse IoU 0.166050  n_valid 5845100
+  mixed        reverse IoU 0.231171  n_valid 5845100
+2026-11-02T08:15:29Z OK PHerc0813/z4704_w060  61s  rows=4
+{"shape": [31, 2420, 12940], "padded": [31, 2432, 12992], "mode": "view"}
+  matched_step forward IoU 0.185878  n_valid 9044663
+  mixed        forward IoU 0.190004  n_valid 9044663
+  matched_step reverse IoU 0.223931  n_valid 9044663
+  mixed        reverse IoU 0.235889  n_valid 9044663
+2026-11-02T08:16:56Z OK PHerc0813/z4704_w100  87s  rows=4
+{"shape": [31, 2280, 13600], "padded": [31, 2304, 13632], "mode": "view"}
+  matched_step forward IoU 0.171582  n_valid 5980570
+  mixed        forward IoU 0.219723  n_valid 5980570
+  matched_step reverse IoU 0.142211  n_valid 5980570
+  mixed        reverse IoU 0.185014  n_valid 5980570
+2026-11-02T08:18:05Z OK PHerc0813/z6496_w100  68s  rows=4
+{"shape": [31, 2160, 12000], "padded": [31, 2176, 12032], "mode": "view"}
+  matched_step forward IoU 0.155166  n_valid 7435834
+  mixed        forward IoU 0.174159  n_valid 7435834
+  matched_step reverse IoU 0.148358  n_valid 7435834
+  mixed        reverse IoU 0.159704  n_valid 7435834
+2026-11-02T08:19:31Z OK PHerc0813/z7696_w100  86s  rows=4
+{"shape": [31, 1720, 2620], "padded": [31, 1728, 2624], "mode": "view"}
+  matched_step forward IoU 0.055161  n_valid 1969100
+  mixed        forward IoU 0.053088  n_valid 1969100
+  matched_step reverse IoU 0.094399  n_valid 1969100
+  mixed        reverse IoU 0.184888  n_valid 1969100
+2026-11-02T08:20:04Z OK PHerc0826/z6528_w020  33s  rows=4
+2026-11-02T08:20:04Z BATCH DONE surfaces_scored=40 rows=160
+2026-11-02T08:20:04Z grace period 10 min, then stopping pod 3ux7sypani2uio so it cannot sit idle
