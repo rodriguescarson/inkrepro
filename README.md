@@ -258,7 +258,7 @@ real.
 - `soup42_early3` is derived from the seed42 run, so a `s42_020k` vs `soup42_early3` row is not two
   independent opinions.
 - The headline pair differs in training step as well as seed. That has now been separated on 40
-  surfaces by running the matched step `s43_020k`: see **"Seed or training step?"** below. The short
+  surfaces by running the matched step `s43_020k`: see **"Seed or training step?"** above. The short
   version is that matching the step does not improve agreement, and that the difference a fixed
   threshold charges as spatial disagreement is mostly a difference in how much ink each checkpoint
   calls. It rests on 40 surfaces of 335 and one step of the seven published.
