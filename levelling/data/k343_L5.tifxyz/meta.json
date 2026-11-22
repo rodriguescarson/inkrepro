@@ -1,0 +1,45 @@
+{
+    "area_cm2": 29.747383984152613,
+    "area_vx2": 39849351.66436669,
+    "bbox": [
+        [
+            3843.638671875,
+            3057.827392578125,
+            7651.5224609375
+        ],
+        [
+            6040.7080078125,
+            6028.40673828125,
+            13075.2353515625
+        ]
+    ],
+    "elapsed_time_s": 615.124182631,
+    "format": "tifxyz",
+    "max_gen": 140,
+    "scale": [
+        0.05000000074505806,
+        0.05000000074505806
+    ],
+    "seed": [
+        5920.0,
+        4489.0,
+        10453.0
+    ],
+    "source": "vc_grow_seg_from_seed",
+    "target_volume": "20250521140437-surface-20260413222639-surface-m7-L0-th0.2.zarr",
+    "type": "seg",
+    "uuid": "07bf5ec3-62a5-441b-80d8-4a439cb57176",
+    "vc_gsfs_mode": "explicit_seed",
+    "vc_gsfs_params": {
+        "cache_size": 4000000000,
+        "generations": 140,
+        "min_area_cm": 0.5,
+        "mode": "seed",
+        "normal_grid_path": "<normal grids of the m7 surface prediction>",
+        "step_size": 20,
+        "thread_limit": 8,
+        "use_cuda": false,
+        "voxelsize": 8.64
+    },
+    "vc_gsfs_version": "dev"
+}
