@@ -1,0 +1,31 @@
+model,angle_off_level_deg,mesh,side,share_ge128_in_boxes,share_ge128_band,share_ge170_in_boxes,share_ge170_band,share_ge200_in_boxes,auc_boxes_vs_band,run
+reader-v3,0,levelled,written,0.369,0.046,0.233,0.016,0.0748,0.655,fl-read-r
+reader-v3,0,levelled,blank,0.031,0.013,0.006,0.001,0.0000,0.541,fl-read-r
+reader-v3,15,turned 15 deg,written,0.381,0.049,0.234,0.014,0.0522,0.679,fl-read-r
+reader-v3,15,turned 15 deg,blank,0.023,0.016,0.004,0.001,0.0000,0.594,fl-read-r
+reader-v3,30,turned 30 deg,written,0.424,0.046,0.214,0.009,0.0147,0.778,fl-read-r
+reader-v3,30,turned 30 deg,blank,0.043,0.022,0.002,0.000,0.0000,0.689,fl-read-r
+reader-v3,45,turned 45 deg,written,0.502,0.066,0.204,0.010,0.0036,0.844,fl-read-r
+reader-v3,45,turned 45 deg,blank,0.121,0.044,0.013,0.002,0.0000,0.764,fl-read-r
+reader-v3,42.6,as grown,written,0.527,0.103,0.214,0.016,0.0027,0.815,fl-read-e
+reader-v3,42.6,as grown,blank,0.220,0.094,0.020,0.004,0.0004,0.740,fl-read-e
+ink9um-dense-native,0,levelled,written,0.353,0.135,0.144,0.017,0.0043,0.586,fl-read-r
+ink9um-dense-native,0,levelled,blank,0.054,0.114,0.002,0.007,0.0000,0.396,fl-read-r
+ink9um-dense-native,15,turned 15 deg,written,0.499,0.213,0.202,0.031,0.0049,0.682,fl-read-r
+ink9um-dense-native,15,turned 15 deg,blank,0.178,0.204,0.007,0.015,0.0000,0.527,fl-read-r
+ink9um-dense-native,30,turned 30 deg,written,0.864,0.418,0.329,0.046,0.0009,0.822,fl-read-r
+ink9um-dense-native,30,turned 30 deg,blank,0.687,0.429,0.064,0.042,0.0000,0.673,fl-read-r
+ink9um-dense-native,45,turned 45 deg,written,0.905,0.478,0.359,0.063,0.0008,0.821,fl-read-r
+ink9um-dense-native,45,turned 45 deg,blank,0.757,0.488,0.087,0.057,0.0000,0.669,fl-read-r
+ink9um-dense-native,42.6,as grown,written,0.855,0.416,0.297,0.050,0.0008,0.804,fl-read-g
+ink9um-dense-native,42.6,as grown,blank,0.769,0.456,0.077,0.061,0.0000,0.684,fl-read-g
+ink_9um seed 42,0,levelled,written,0.178,0.073,0.080,0.013,0.0086,0.538,fl-read-r
+ink_9um seed 42,0,levelled,blank,0.033,0.071,0.003,0.013,0.0000,0.406,fl-read-r
+ink_9um seed 42,15,turned 15 deg,written,0.283,0.112,0.117,0.023,0.0102,0.643,fl-read-r
+ink_9um seed 42,15,turned 15 deg,blank,0.077,0.101,0.013,0.019,0.0001,0.506,fl-read-r
+ink_9um seed 42,30,turned 30 deg,written,0.454,0.176,0.204,0.041,0.0133,0.712,fl-read-r
+ink_9um seed 42,30,turned 30 deg,blank,0.268,0.167,0.059,0.038,0.0014,0.628,fl-read-r
+ink_9um seed 42,45,turned 45 deg,written,0.503,0.196,0.238,0.046,0.0123,0.723,fl-read-r
+ink_9um seed 42,45,turned 45 deg,blank,0.262,0.188,0.066,0.040,0.0025,0.591,fl-read-r
+ink_9um seed 42,42.6,as grown,written,0.495,0.208,0.210,0.045,0.0086,0.700,fl-read-g
+ink_9um seed 42,42.6,as grown,blank,0.352,0.232,0.078,0.051,0.0007,0.630,fl-read-g

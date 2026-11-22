@@ -11,6 +11,13 @@ It needs no GPU and runs no inference. The eligible-scroll atlas already publish
 surfaces across the eight eligible scrolls, the output of three ink checkpoints run at identical
 settings. Comparing them is a download, a correlation, and a delete.
 
+## Also here: level a grown patch before reading it
+
+[`levelling/`](levelling/) is a separate, smaller piece of work: a patch grown from a seed comes out at a random
+angle, ink models misread tilted text (on the PHerc0343 known letters, three models call ink on the blank side of
+the sheet and reader-v3 loses its crisp strokes), and `levelling/level_tifxyz.py` turns the mesh level in one
+command. Numbers, figures and the tool are in that folder.
+
 ## What it reports
 
 For a pair of predictions over the valid region of one surface:

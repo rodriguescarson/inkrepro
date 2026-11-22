@@ -7,6 +7,9 @@ requires-python = ">=3.10"
 license = { text = "MIT" }
 dependencies = ["numpy>=1.24", "tifffile>=2023.1.1"]
 
+[project.optional-dependencies]
+levelling = ["opencv-python-headless>=4.8", "scipy>=1.10"]
+
 [project.scripts]
 inkrepro = "inkrepro.cli:main"
 
