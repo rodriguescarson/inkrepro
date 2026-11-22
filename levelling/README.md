@@ -4,7 +4,7 @@ A patch grown from a seed comes out at a random angle. On a tilted patch, three 
 none, and the one that draws crisp letters stops drawing them. Turning the mesh so the text rows are level fixes
 both. This folder has the measurement and a one-command tool.
 
-Measured on 22 November 2026, on the PHerc0343 letters that won First Letters.
+Measured on 22 November 2026, on the PHerc0343 letters that won First Letters, and repeated on the PHerc0211 letters.
 
 ## The test
 
@@ -71,6 +71,38 @@ Off level, the usual summary numbers get **better**. More pixels above 0.5 insid
 against the boxes (reader-v3: 0.66 level, 0.84 at 45 degrees). If you rank patches by how much ink a model calls, a
 tilted patch beats a level one. It is grey haze filling the boxes, not letters.
 
+## The same test on a second scroll
+
+PHerc0211 is another First Letters scroll with a published surface: Priyank Aranke's three-row surface and his
+probability map on it, from the public folder he released with his submission (CC BY-NC 4.0). It is a different
+scroll, a different scan resolution (9.362 um), different letters, and the reference is a different
+model's output, not letter boxes.
+
+First, do the three models see his letters at all? On his surface as published, rendered by me, reader-v3 marks
+42 per cent of what his model calls ink (probability 0.5 or more) and 0.2 per cent of what it calls blank (0.1 or
+less). The two maps correlate at 0.72. So the readers work on this scroll.
+
+Then I turned his surface 15, 30 and 45 degrees off level with `level_tifxyz.py`, rendered each, and read each with
+the three models. His probability map is carried onto each turned render through 3D, so the score does not depend
+on the angle.
+
+| Degrees off level | 0 | 15 | 30 | 45 |
+|---|---|---|---|---|
+| reader-v3, correlation with his map | 0.70 | 0.71 | 0.65 | 0.58 |
+| dense-native, correlation with his map | 0.59 | 0.57 | 0.35 | 0.27 |
+| ink_9um seed 42, correlation with his map | 0.39 | 0.36 | 0.25 | 0.22 |
+| reader-v3, crisp pixels (200+) on his ink | 5.3% | 3.3% | 1.6% | 0.94% |
+| reader-v3, blank side, on his ink | 6% | 6% | 9% | 16% |
+| dense-native, blank side, on his ink | 11% | 27% | 76% | 86% |
+| ink_9um seed 42, blank side, on his ink | 4% | 11% | 29% | 37% |
+| dense-native, written side, on his blank | 1% | 3% | 13% | 26% |
+
+The same three things happen as on PHerc0343. The blank side lights up. The models call ink where the reference
+says there is none. reader-v3 loses its crisp strokes, here by a factor of 6 at 45 degrees.
+
+Every number: [`results/angle_sweep_pherc0211.csv`](results/angle_sweep_pherc0211.csv). Scorer:
+[`reference_map_eval.py`](reference_map_eval.py). His files are not copied here.
+
 ## How tilted is a grown patch?
 
 I grew 61 more patches the same way on PHerc 0125, 0211, 0257, 0800, 0813 and 0826. Their text direction was a
@@ -112,8 +144,11 @@ Tests: [`../tests/test_level_tifxyz.py`](../tests/test_level_tifxyz.py).
 
 ## What this does not show
 
-- One row, on one scroll, with strong ink. Fainter ink may behave differently. I have not measured it.
-- The letters on this row are still recognisable at 45 degrees with reader-v3. What goes first is the fine detail.
+- Two known texts on two scrolls, both with ink strong enough to have been read already. Fainter ink may behave
+  differently. I have not measured it.
+- On PHerc0211 the reference is another model's probability map. That model was trained partly on reader-v2 labels,
+  so its agreement with reader-v3 is not fully independent.
+- The PHerc0343 letters are still recognisable at 45 degrees with reader-v3. What goes first is the fine detail.
 - Three models, at one depth. I have not tested Hecate or the TimeSformer models.
 - Why the models do this. My guess is that they were trained on level text and level fibres. I have not tested it.
 - An earlier version of this test rotated the rendered layers instead of the mesh. That mixes text angle with
@@ -125,8 +160,9 @@ row, the known letters give 13. That is a screen, not an eye check.
 
 ## Credit and licence
 
-The letter boxes and the reference mesh are Erwin Nieuwlaar's (MIT). The models are by domenicor046, Erwin
-Nieuwlaar and the Vesuvius Challenge team. The tracer and renderer are villa's VC3D.
+The PHerc0343 letter boxes and reference mesh are Erwin Nieuwlaar's (MIT). The PHerc0211 surface and probability
+map are Priyank Aranke's (CC BY-NC 4.0); only numbers derived from them are here. The models are by domenicor046,
+Erwin Nieuwlaar and the Vesuvius Challenge team. The tracer and renderer are villa's VC3D.
 
 Code here: MIT, like the rest of this repository. The mesh, the figures and the tables are derived from the
 Vesuvius Challenge scan of PHerc0343 and follow the licence of that data (CC BY-NC 4.0 at the time of writing; see

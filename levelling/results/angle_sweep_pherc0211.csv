@@ -1,0 +1,25 @@
+model,angle_off_level_deg,side,pearson_r_with_reference,share_ge128_on_reference_ink,share_ge128_on_reference_blank,share_ge170_on_reference_ink,share_ge170_on_reference_blank,share_ge200_on_reference_ink,auc_ink_vs_blank,run
+reader-v3,0,written,+0.699,0.399,0.007,0.190,0.000,0.0529,0.914,fl-read-t
+reader-v3,0,blank,+0.012,0.063,0.026,0.015,0.000,0.0000,0.817,fl-read-t
+reader-v3,15,written,+0.709,0.447,0.025,0.197,0.000,0.0333,0.930,fl-read-t
+reader-v3,15,blank,+0.003,0.062,0.019,0.014,0.007,0.0000,0.816,fl-read-t
+reader-v3,30,written,+0.651,0.431,0.012,0.140,0.000,0.0156,0.923,fl-read-t
+reader-v3,30,blank,+0.023,0.091,0.005,0.008,0.000,0.0000,0.870,fl-read-t
+reader-v3,45,written,+0.576,0.512,0.003,0.141,0.000,0.0094,0.941,fl-read-t
+reader-v3,45,blank,+0.063,0.157,0.005,0.016,0.000,0.0000,0.886,fl-read-t
+ink9um-dense-native,0,written,+0.590,0.433,0.014,0.146,0.000,0.0084,0.880,fl-read-t
+ink9um-dense-native,0,blank,-0.022,0.110,0.025,0.005,0.000,0.0000,0.631,fl-read-t
+ink9um-dense-native,15,written,+0.571,0.703,0.026,0.262,0.003,0.0070,0.952,fl-read-t
+ink9um-dense-native,15,blank,+0.003,0.267,0.058,0.017,0.000,0.0000,0.803,fl-read-t
+ink9um-dense-native,30,written,+0.349,0.941,0.131,0.559,0.028,0.0067,0.960,fl-read-t
+ink9um-dense-native,30,blank,+0.036,0.761,0.149,0.121,0.016,0.0000,0.903,fl-read-t
+ink9um-dense-native,45,written,+0.273,0.968,0.255,0.608,0.031,0.0045,0.964,fl-read-t
+ink9um-dense-native,45,blank,+0.018,0.864,0.186,0.173,0.000,0.0001,0.917,fl-read-t
+ink_9um seed 42,0,written,+0.387,0.253,0.018,0.089,0.001,0.0067,0.775,fl-read-t
+ink_9um seed 42,0,blank,-0.010,0.043,0.007,0.005,0.000,0.0000,0.711,fl-read-t
+ink_9um seed 42,15,written,+0.363,0.368,0.030,0.165,0.000,0.0172,0.824,fl-read-t
+ink_9um seed 42,15,blank,+0.026,0.108,0.006,0.019,0.001,0.0003,0.700,fl-read-t
+ink_9um seed 42,30,written,+0.248,0.565,0.061,0.293,0.012,0.0233,0.889,fl-read-t
+ink_9um seed 42,30,blank,+0.021,0.285,0.013,0.065,0.000,0.0023,0.835,fl-read-t
+ink_9um seed 42,45,written,+0.224,0.608,0.107,0.319,0.014,0.0225,0.845,fl-read-t
+ink_9um seed 42,45,blank,-0.009,0.373,0.139,0.099,0.002,0.0018,0.758,fl-read-t
