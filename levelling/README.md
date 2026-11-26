@@ -126,6 +126,10 @@ villa's `vc_render_tifxyz.cpp` describes next to `--flip-normals`. So a grown pa
 instead of two, and the image is not mirrored. `vc_render_tifxyz --rotate` only takes quarter turns, which is why
 this is its own step.
 
+The tool prints the share of grid cells whose normal pointed out. Near 0 or 1 the call is clear. Near a half it is
+not: the sheet is crumpled, or the axis is wrong. On 48 more patches, grown later with only a rough axis (the
+centre of the scan's cross-section), the share was between 0.35 and 0.65 on 27. Read both directions then.
+
 Other options: `--angle DEG` to set the angle yourself, `--flip-z` for a scroll scanned upside down.
 Tests: [`../tests/test_level_tifxyz.py`](../tests/test_level_tifxyz.py).
 
@@ -155,8 +159,15 @@ Tests: [`../tests/test_level_tifxyz.py`](../tests/test_level_tifxyz.py).
   resampling blur, so those numbers are not quoted here. They agree in direction and roughly in size.
 
 I read my own 61 patches level. 57 of them are on five scrolls nobody has read yet (PHerc 0125, 0257, 0800, 0813,
-0826). An automatic count of marks per row found nothing like the known row there: the best patch had 8 marks in a
-row, the known letters give 13. That is a screen, not an eye check.
+0826). An automatic count of marks per row found nothing like the known rows there. The known rows give 13 marks
+across the page and 6 down it (PHerc0343), and 14 across and 5 down (PHerc0211). On the 57, no map had 8 or more
+across with clearly fewer down. The most across was 10, on a map with 12 down. That is a screen, not an eye check.
+
+Corrected 26 November 2026: this paragraph first said "the best patch had 8 marks in a row, the known letters give
+13". That count included model output from outside the patch outline, where there is no papyrus. Counted on the
+patch only, the best such map has 7 across and 5 down. The angle tables above are not affected. On PHerc0343 they
+are scored inside the letter boxes and a band around them, in the middle of the patch. On PHerc0211 they use only
+pixels carried through 3D from the reference surface.
 
 ## Credit and licence
 
